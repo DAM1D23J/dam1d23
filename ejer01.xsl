@@ -12,7 +12,7 @@
             <th>Artista</th>
             <th>año</th>
           </tr>
-          <xsl:for-each select="//cd">
+          <xsl:for-each select="//cd[year>1980]">
             <tr>
               <td><xsl:value-of select="title"/></td>
               <td><xsl:value-of select="artist"/></td>
