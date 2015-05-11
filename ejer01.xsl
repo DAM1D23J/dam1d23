@@ -13,19 +13,81 @@
             <th>año</th>
           </tr>
           <xsl:for-each select="//cd">
-          <xsl:sort select="year"/>
-            <xsl:if test="year&gt;1979">
-              <xsl:if test="year&lt;1990">
-                <tr>
-                  <td><xsl:value-of select="title"/></td>
-                  <td><xsl:value-of select="artist"/></td>
-                  <td><xsl:value-of select="year"/></td>
-                </tr>
-              </xsl:if>
-            </xsl:if>
+          <xsl:choose>
+          <xsl:when test="year&gt;1969 and year&lt;1980">
+            <tr>
+              <td><xsl:apply-templates select="title" mode="verde"/></td>
+              <td><xsl:apply-templates select="artist" mode="verde"/></td>
+              <td><xsl:apply-templates select="year" mode="verde"/></td>
+            </tr>
+            </xsl:when>
+             <xsl:when test="year&gt;1979 and year&lt;1990">
+            <tr>
+              <td><xsl:apply-templates select="title" mode="rojo"/></td>
+              <td><xsl:apply-templates select="artist" mode="rojo"/></td>
+              <td><xsl:apply-templates select="year" mode="rojo"/></td>
+            </tr>
+            </xsl:when>
+            <xsl:when test="year&gt;1989">
+            <tr>
+              <td><xsl:apply-templates select="title" mode="azul"/></td>
+              <td><xsl:apply-templates select="artist" mode="azul"/></td>
+              <td><xsl:apply-templates select="year" mode="azul"/></td>
+            </tr>
+            </xsl:when>
+            </xsl:choose>
           </xsl:for-each>
         </table>
       </body>
     </html>
   </xsl:template>
+  
+  <xsl:template match="title" mode="verde">
+    <span style="color:#00ff00">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  <xsl:template match="artist" mode="verde">
+    <span style="color:#00ff00">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  <xsl:template match="year" mode="verde">
+    <span style="color:#00ff00">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  
+  <xsl:template match="title" mode="rojo">
+    <span style="color:#ff0000">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  <xsl:template match="artist" mode="rojo">
+    <span style="color:#ff0000">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  <xsl:template match="year" mode="rojo">
+    <span style="color:#ff0000">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  
+  <xsl:template match="title" mode="azul">
+    <span style="color:#0000ff">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  <xsl:template match="artist" mode="azul">
+    <span style="color:#0000ff">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  <xsl:template match="year" mode="azul">
+    <span style="color:#0000ff">
+      <xsl:value-of select="."/>
+    </span>
+  </xsl:template>
+  
 </xsl:stylesheet>
