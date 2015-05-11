@@ -12,12 +12,17 @@
             <th>Artista</th>
             <th>año</th>
           </tr>
-          <xsl:for-each select="//cd[year>1980]">
-            <tr>
-              <td><xsl:value-of select="title"/></td>
-              <td><xsl:value-of select="artist"/></td>
-              <td><xsl:value-of select="year"/></td>
-            </tr>
+          <xsl:for-each select="//cd">
+          <xsl:sort select="year"/>
+            <xsl:if test="year&gt;1979">
+              <xsl:if test="year&lt;1990">
+                <tr>
+                  <td><xsl:value-of select="title"/></td>
+                  <td><xsl:value-of select="artist"/></td>
+                  <td><xsl:value-of select="year"/></td>
+                </tr>
+              </xsl:if>
+            </xsl:if>
           </xsl:for-each>
         </table>
       </body>
