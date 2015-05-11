@@ -4,31 +4,32 @@
     <html>
       <head>
         <title>Ejer01</title>
+        <styles type="text/css">
+        .rojo {
+          color= red;
+         }
+        </styles>
       </head>
       <body>
-      <h1>CD Catalog</h1>
-      <ol>
-        <xsl:for-each select="//cd">
-              <li><xsl:apply-templates select="title"/>
-              <br/>
+        <h1>CD Catalog</h1>
+        <ol>
+          <xsl:for-each select="//cd[position()&lt;6]">
+            <li>
+              <div class="rojo">
+                <xsl:value-of select="title"/>
+                <br/>
+              </div>
               <xsl:value-of select="artist"/>
               <xsl:text>, </xsl:text>
               <xsl:value-of select="year"/>
               <br/>
               <xsl:text>$</xsl:text>
               <xsl:value-of select="price"/>
-              </li>
-              <br/>
+            </li>
+            <br/>
           </xsl:for-each>
         </ol>
       </body>
     </html>
   </xsl:template>
-  
-  <xsl:template match="title">
-    <span style="color:#ff0000">
-      <xsl:value-of select="."/>
-    </span>
-  </xsl:template>
-  
 </xsl:stylesheet>
